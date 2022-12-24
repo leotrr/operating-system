@@ -1,0 +1,28 @@
+#!/bin/bash
+
+# Creating files
+touch temp.json price.txt
+
+# Fetching the API aand stroing json response in file
+curl -o temp.json -X 'GET' \
+  'https://api.coingecko.com/api/v3/coins/'bitcoin'/market_chart?vs_currency='eur'&days='$days'' \
+  -H 'accept: application/json' &> /dev/null
+
+# Pattern finding in file
+grep -o -P '(?<=,).*(?=]],"m)' temp.json > price.txt
+
+# Assigning the price value in file to variable
+while read val
+do
+        p=$val
+done < price.txt
+
+# Converting the scientific notation price to decimal
+price=`printf "%.15f" $p`
+
+echo "The value of bitcoin in euro is = $price"
+rm temp.json
+
+
+ sqlite3 dbBitcoin "INSERT INTO bitcoin VALUES ($price,datetime('now','localtime'))"
+sqlite3 dbBitcoin "SELECT * FROM bitcoin"

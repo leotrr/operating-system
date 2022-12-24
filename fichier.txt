@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head>
+     <link rel="stylesheet" href="style.css" />
+        <title>
+            Horizontal Navigation Bar
+        </title>
+    </head>
+    <body>
+        <!-- here in nav tag used two classes 
+             that is navbar and background-->
+        <!-- each class declared in nav tag will be 
+             used to design the form using CSS-->
+        <nav class="navbar background">
+            <!-- we have used list tag that is ul 
+                 to list the items-->
+            <ul class="nav-list"> 
+                <li><a href="bdd.php">Base de données</a></li>
+                <li><a href="valeur_actuel.php">valeur actuelle</a></li>
+                <li><a href="croissance_journaliere">croissance aujourd'hui</a></li>
+                <li><a href="moyenne.php">moyenne journaliere</a></li>
+            </ul>
+            <!-- we have used rightnav in order to design
+                 the seachbar properly by using CSS-->
+
+	</nav>
+        <div class="sucess">
+    <h1>Bienvenue <?php echo $_SESSION['username']; ?>!</h1>
+    <p>Dans ce projet l'API de coingecko est utilisé pour scraper la valeur du bitcoin en euro.</p>
+    
+    </div>
+    </body>
+</html>

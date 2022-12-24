@@ -1,0 +1,13 @@
+<?php
+$db = new SQLite3('dbBitcoin', SQLITE3_OPEN_READWRITE);
+if(!$db) {
+    echo $db->lastErrorMsg();
+} else {
+    echo "Base ouverte avec succès\n";
+}
+$sql="SELECT avg(valeur) FROM bitcoin";
+$res = $db->query($sql);
+while ($row = $res->fetchArray(SQLITE3_ASSOC) ) {
+    echo " La valeur du bitcoin en € est  : ".$row['valeur']."<br>";
+}
+?>
